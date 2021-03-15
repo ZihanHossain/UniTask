@@ -1,13 +1,15 @@
 <?php
-$message = "";
-if ($_POST["cpass"] == $_POST["npass"]) {
-    $message = "New and Current pass can not be same.";
-}
-if(!($_POST["npass"] == $_POST["rnpass"])){
-    $message = "New password and Retype New Password must be same.";
-}
-if ((strlen($_POST["cpass"]) < 1) or (strlen($_POST["npass"]) < 1) or (strlen($_POST["rnpass"]) < 1)) {
-    $message = "You must fill up every requirement.";
+if (isset($_POST["submit"])) {
+    $message = "";
+    if ($_POST["cpass"] == $_POST["npass"]) {
+        $message = "New and Current pass can not be same.";
+    }
+    if (!($_POST["npass"] == $_POST["rnpass"])) {
+        $message = "New password and Retype New Password must be same.";
+    }
+    if ((strlen($_POST["cpass"]) < 1) or (strlen($_POST["npass"]) < 1) or (strlen($_POST["rnpass"]) < 1)) {
+        $message = "You must fill up every requirement.";
+    }
 }
 ?>
 
@@ -56,12 +58,12 @@ if ((strlen($_POST["cpass"]) < 1) or (strlen($_POST["npass"]) < 1) or (strlen($_
                 <tr>
                     <td colspan="2">
                         <br>
-                        <label style="color: red;"><?php echo $message ?></label>
+                        <label style="color: red;"><?php if(isset($_POST["submit"])) echo $message ?></label>
                     </td>
                 </tr>
             </table>
             <hr>
-            <input type="submit">
+            <input type="submit" name="submit">
         </form>
     </fieldset>
 </body>
